@@ -6,7 +6,7 @@
 My first step was imagining a chart that had 365 days in the x-axis.
 Then I drew a table in google sheets with the 4 columns outlined in the project instructions:
 
-![Imagined Table for Retention](./assets/Imagined%20Table%201.png)
+![Imagined Table for Retention](Imagined%20Table%201.png)
 
 I decided to start by writing a query for the most difficult column, which is the number of players retained per day.  
 
@@ -18,7 +18,7 @@ Then I used the ROUND and SAFE_DIVIDE functions to populate the “Fractional Re
 
 For each query that I tested, I made sure that every result was tied to “Joined” (aka day number) since the final table had to be anchored to this column.
 
-![Chart of Fractional Retention](./assets/Chart%201.png)
+![Chart of Fractional Retention](Chart%201.png)
 
 The data visualization looks like waves or something akin to a lifesign monitor.
 It shows fairly consistent up and down rolling 30-day-retention throughout the year.
@@ -31,7 +31,7 @@ I approached this question in 2 ways.
 
 First, I sorted the players by age groups and then separated them by “retained” or “not retained” after 30 days.  It looked like the chart below:
 
-![Chart of Retention by Age Group](./assets/Chart%202.png)
+![Chart of Retention by Age Group](Chart%202.png)
 
 
 It looked pretty boring to me since it showed that more players were retained than not, in every age group.  And this chart just showed that 20-year-olds played the game the most.
@@ -40,7 +40,7 @@ So I decided to calculate the Retention Fraction by age group.  And that’s whe
 
 To start off, I imagined the table below:
 
-![Imagined Table for Fractional Retention by Age](./assets/Imagined%20Table%202.png)
+![Imagined Table for Fractional Retention by Age](Imagined%20Table%202.png)
 
 
 My innermost query is to call on each player_id, their age, what day they joined, their last day playing a match and their retention value as  “Max Day” played minus “joined”
@@ -49,7 +49,7 @@ I then nested this query into another SELECT statement that called for distinct 
 
 Then my final and outermost query is using the SAFE_DIVIDE function to divide  “Count of Retained” by “Count of Players” to populate the “Fractional Retention” column.
 
-![Chart of Fractional Retention by Age](./assets/Chart%203.png)
+![Chart of Fractional Retention by Age](Chart%203.png)
 
 
 It’s important to disregard the youngest and oldest age groups here since only 1 or 2 players are in each of those age groups, so the fractional retention of 0 is not really a fair assessment.
