@@ -6,7 +6,7 @@
 My first step was imagining a chart that had 365 days in the x-axis.
 Then I drew a table in google sheets with the 4 columns outlined in the project instructions:
 
-![Imagined Table for Retention](Imagined Table.png)
+![Imagined Table for Retention](Imagined%20Table%201.png)
 
 I decided to start by writing a query for the most difficult column, which is the number of players retained per day.  
 
