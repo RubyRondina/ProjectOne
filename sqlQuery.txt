@@ -1,0 +1,111 @@
+# Query #1 - Rolling 30 Day Retention by Day
+
+SELECT
+ day AS Day,
+ Number_of_Players_Joined,
+ Number_of_Players_Retained,
+ Round (safe_divide (Number_of_Players_Retained,
+     Number_of_Players_Joined),2) AS Fractional_Retention
+FROM (
+ SELECT
+   joined AS Day,
+   count (player_id) AS Number_of_Players_Joined,
+   countif (Last_Day_Played - joined > 30) AS Number_of_Players_Retained
+ FROM (
+     SELECT
+       M.player_id,
+       joined,
+       MAX(day) AS Last_Day_Played
+     FROM
+       `big-query-project-1-329514.Game_Company_Data.Matches` M
+     JOIN
+       `big-query-project-1-329514.Game_Company_Data.Player Info` PLIN
+     ON
+       M.player_id = PLIN.player_id
+     GROUP BY
+       player_id,
+       joined)
+       GROUP BY
+   joined)
+
+
+
+# Query #2a - Rolling 30 Day Retention by Age Group (Retained vs. Not Retained by Age)
+
+SELECT
+ age,
+ COUNT(Retained) AS Number_of_Retained,
+ Count (Not_Retained) AS Number_of_Not_Retained,
+FROM (
+ SELECT
+   player_id,
+   age,
+   CASE
+     WHEN Retention > 30 THEN 1
+   ELSE
+   NULL
+ END
+   AS Retained,
+   CASE
+     WHEN Retention <= 30 THEN 1
+   ELSE
+   NULL
+ END
+   AS Not_Retained
+ FROM (
+   SELECT
+     M.player_id,
+     age,
+     joined,
+     max (day) AS Last_Day_Played,
+     max (day) - joined AS Retention
+   FROM
+     `big-query-project-1-329514.Game_Company_Data.Player Info` PLIN
+   JOIN
+     `big-query-project-1-329514.Game_Company_Data.Matches` M
+   ON
+     PLIN.player_id = M.player_id
+   GROUP BY
+     M.player_id,
+     age,
+     joined))
+GROUP BY
+ age
+ORDER BY
+ age
+
+
+# Query #2b - Retention Fraction by Age Group (Retained Divided by Total, per Age)
+
+SELECT
+ Age,
+ Number_of_Players,
+ Number_Retained,
+ ROUND(safe_divide (Number_Retained,
+     Number_of_Players),2) AS Fractional_Retention
+FROM (
+ SELECT
+   DISTINCT age,
+   COUNT(player_id) AS Number_of_Players,
+   COUNTIF(Retention > 30) AS Number_Retained
+ FROM (
+   SELECT
+     M.player_id,
+     age,
+     joined,
+     max (day) AS Last_Day_Played,
+     max (day) - joined AS Retention
+   FROM
+     `big-query-project-1-329514.Game_Company_Data.Player Info` PLIN
+   JOIN
+     `big-query-project-1-329514.Game_Company_Data.Matches` M
+   ON
+     PLIN.player_id = M.player_id
+   GROUP BY
+     M.player_id,
+     age,
+     joined)
+ GROUP BY
+   age
+ ORDER BY
+   age)
