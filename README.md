@@ -1,6 +1,7 @@
-# Project 2 - Rolling 30 Day Retention
+# Project 2: Rolling 30 Day Retention
 
-![RetentionImage]()
+<p align="center"><img width="500" height="" src="https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Retention.jpg"></p>
+
 
 In this bootcamp project, we were tasked to use **SQL** to:
 
@@ -24,18 +25,17 @@ We have been hired by a mobile game company to investigate player retention on t
 
 The Schema is as follows:
 
-![Schema]()
+<p align="center"><img width="500" height="" src="https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Schema.png"></p>
 
 
-
-## Question 1 - Calculate the rolling 30-day retention and express it as a fraction of the total playerbase at the time. 
+### Question 1: Calculate the rolling 30-day retention as a fraction of the total playerbase at the time. 
 
 Rolling 30-day retention asks the following question: 
 Did a given player play a match 30 days after he or she joined? 
 A player is either retained or not retained with respect to this retention metric. 
 
 
-## Solution - Rolling 30 Day Retention by Day
+### Solution: Rolling 30 Day Retention by Day
 
 My first step was imagining a chart that had 365 days in the x-axis.
 
@@ -45,7 +45,7 @@ Then I drew a table in google sheets with the 4 following columns for each day:
 -Of the players who joined that day, how many were retained
 -The fractional retention (the third column divided by the second column).
 
-![Imagined Table for Retention](Imagined%20Table%201.png)
+![Imagined Table for Retention](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Imagined%20Table%201.png)
 
 I decided to start by writing a query for the most difficult column, which is the number of players retained per day by using the Max function to call on the last day played by each player.  I then subtracted their “joined” day from their max “day.”  In order to do this, I first had to join the `Matches` table to the `Player_Info` table on the player_id key.
 
@@ -88,19 +88,19 @@ FROM (
 ```
 
 
-![Chart of Fractional Retention](Chart%201.png)
+![Chart of Fractional Retention](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Chart%201.png)
 
 The data visualization shows fairly consistent up and down rolling 30-day-retention throughout the year.
 According to my research, a 40% fractional retention for 30-day retention is decent.  Since the numbers here are higher, it shows a pretty strong performance for the game.
 
 
-## Question 2 - Calculate 30-day retention by Age Group
+### Question 2: Calculate 30 day retention by Age Group
 
 I approached this question in 2 ways.  
 
 First, I sorted the players by age groups and then separated them by “retained” or “not retained” after 30 days.  
 
-## Solution A: ROLLING 30 DAY RETENTION BY AGE (Retained vs. Not Retained by Age)
+### Solution A: Rolling 30 Day Retention by Age (Retained vs. Not Retained by Age)
 
 ```sql
 SELECT
@@ -148,7 +148,7 @@ ORDER BY
 
 The results are visualized in the chart below:
 
-![Chart of Retention by Age Group](Chart%202.png)
+![Chart of Retention by Age Group](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Chart%202.png)
 
 
 This visualization looks pretty boring since it shows that more players were retained than not, in every age group.  And this chart just showed that 20-year-olds played the game the most.
@@ -156,11 +156,11 @@ This visualization looks pretty boring since it shows that more players were ret
 So I decided to calculate the Retention Fraction by age group.  And that’s where the data was more interesting. 
 
 
-## Solution B: RETENTION FRACTION BY AGE (Retained Divided by Total, per Age)
+### Solution B: Retention Fraction by Age (Retained Divided by Total, per Age)
 
 To start off, I imagined the table below:
 
-![Imagined Table for Fractional Retention by Age](Imagined%20Table%202.png)
+![Imagined Table for Fractional Retention by Age](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Imagined%20Table%202.png)
 
 
 My innermost query is to call on each player_id, their age, what day they joined, their last day playing a match and their retention value as  “Max Day” played minus “joined”
@@ -206,7 +206,7 @@ FROM (
 
 These results are visualized in the chart below:
 
-![Chart of Fractional Retention by Age](Chart%203.png)
+![Chart of Fractional Retention by Age](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Chart%203.png)
 
 
 It’s important to disregard the youngest and oldest age groups here since only 1 or 2 players are in each of those age groups, so the fractional retention of 0 is not really a fair assessment.
