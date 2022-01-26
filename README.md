@@ -8,6 +8,8 @@ The purpose of this project is to use **SQL** to:
 - Combine data in a relational database
 - Develop complex queries to analyze data and answer relevant questions
 
+*(Jump directly to my **SQL queries** [here](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/sqlQuery.txt))*.
+
 And to take advantage of **Sheets** to:
 
 - Facilitate the data analysis process
