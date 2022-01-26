@@ -3,7 +3,7 @@
 <p align="center"><img width="500" height="" src="https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Retention.jpg"></p>
 
 
-In this bootcamp project, we were tasked to use **SQL** to:
+The purpose of this project is to use **SQL** to:
 
 - Combine data in a relational database
 - Develop complex queries to analyze data and answer relevant questions
@@ -16,12 +16,16 @@ And to take advantage of **Sheets** to:
 
 ## The Background
 
-We have been hired by a mobile game company to investigate player retention on the game's one year anniversary.  There is a rich store of four tables as follows:
+As an analyst for a mobile game company, the task is to investigate player retention on the game's one year anniversary.  There is a rich store of four tables as follows:
 
 -Match information, including the players who matched against each other, and the outcome,
+
 -Player information, including information like the player's age and when they joined,
+
 -Item information, including the item ID and the price
+
 -Purchase information, including what player ID bought what item ID, and on what day.
+
 
 The Schema is as follows:
 
@@ -42,7 +46,9 @@ My first step was imagining a chart that had 365 days in the x-axis.
 Then I drew a table in google sheets with the 4 following columns for each day:
 
 -The total number of players who joined that day
+
 -Of the players who joined that day, how many were retained
+
 -The fractional retention (the third column divided by the second column).
 
 ![Imagined Table for Retention](https://github.com/RubyRondina/SQL_Project_30DayRetention/blob/main/TablesAndCharts/Imagined%20Table%201.png)
@@ -213,5 +219,5 @@ It’s important to disregard the youngest and oldest age groups here since only
 
 Otherwise, the data visualization shows a fairly consistent fractional retention over most age groups.  
 
-It’s interesting to note that fractional retention is highest in the 29-year-olds and 31-year-olds, but dips sharply in the middle with the 30-year-olds.  This could be just a random coincidence since this is data made-up from an imaginary company.
+It’s interesting to note that fractional retention is highest in the 29-year-olds and 31-year-olds, but dips sharply in the middle with the 30-year-olds.
 
